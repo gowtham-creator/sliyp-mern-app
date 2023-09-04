@@ -2,11 +2,16 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
+
+const http = require("http"); // Import the 'http' module
+const socketIo = require("socket.io"); // Import 'socket.io'
 const cors = require("cors");
 require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const profileRoutes = require("./routes/profileRoutes");
+const chatRoutes = require('./routes/chatRoutes'); // Update the path
+
 
 app.use(express.json());
 app.use(cors());
@@ -17,9 +22,26 @@ mongoose.connect(mongoUrl, err => {
   console.log("Mongodb connected...");
 });
 
+const server = http.createServer(app); // Create an HTTP server using 'app'
+
+// Create a WebSocket server using 'socket.io' and attach it to the HTTP server
+const io = socketIo(server);
+
+io.on("connection", (socket) => {
+  console.log("A user connected to WebSocket");
+
+  // You can handle WebSocket events here
+  socket.on("disconnect", () => {
+    console.log("A user disconnected from WebSocket");
+  });
+});
+
+
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/profile", profileRoutes);
+app.use('/api/chat', chatRoutes);
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "../frontend/build")));

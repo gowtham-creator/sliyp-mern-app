@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Tasks from '../components/Tasks';
 import MainLayout from '../layouts/MainLayout';
+import GroupChat from "../components/GroupChat";
 
 const Home = () => {
 
@@ -30,6 +31,7 @@ const Home = () => {
           <>
             <h1 className='text-lg mt-8 mx-8 border-b border-b-gray-300'>Welcome {authState.user.name}</h1>
             <Tasks />
+              <GroupChat />
           </>
         )}
       </MainLayout>
