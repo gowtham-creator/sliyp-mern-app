@@ -26,16 +26,25 @@ const server = http.createServer(app); // Create an HTTP server using 'app'
 
 // Create a WebSocket server using 'socket.io' and attach it to the HTTP server
 const io = socketIo(server);
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
-io.on("connection", (socket) => {
-  console.log("A user connected to WebSocket");
+io.on('connection', (socket) => {
+  console.log('A user connected');
 
-  // You can handle WebSocket events here
-  socket.on("disconnect", () => {
-    console.log("A user disconnected from WebSocket");
+  socket.on('chat message', (message) => {
+    io.emit('chat message', message); // Broadcast the message to all connected clients
+  });
+
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
   });
 });
 
+server.listen(3001, () => {
+  console.log('Chat Server is running on http://localhost:3001');
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
