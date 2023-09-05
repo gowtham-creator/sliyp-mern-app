@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import { saveProfile } from "./redux/actions/authActions";
 import NotFound from "./pages/NotFound";
 import LandingScreen   from "./components/LandingScreen";
+import io from "socket.io-client";
 
 function App() {
 

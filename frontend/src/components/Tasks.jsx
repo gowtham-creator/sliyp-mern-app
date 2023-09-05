@@ -12,7 +12,7 @@ const Tasks = () => {
   const [fetchData, { loading }] = useFetch();
 
   const fetchTasks = useCallback(() => {
-    const config = { url: "/tasks", method: "get", headers: { Authorization: authState.token } };
+    const config = { url: "/tasks?userId="+authState.user._id, method: "get", headers: { Authorization: authState.token } };
     fetchData(config, { showSuccessToast: false }).then(data => setTasks(data.tasks));
   }, [authState.token, fetchData]);
 

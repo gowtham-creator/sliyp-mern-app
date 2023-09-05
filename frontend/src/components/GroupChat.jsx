@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api'; // Import your API configuration
+import api from '../api';
+import {useSelector} from "react-redux"; // Import your API configuration
 
 const GroupChat = () => {
-  const [messages, setMessages] = useState([]);
+    const authState = useSelector(state => state.authReducer);
+    const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
 
   useEffect(() => {
@@ -25,15 +27,16 @@ const GroupChat = () => {
     e.preventDefault();
     if (messageInput.trim() !== '') {
       // Send the message to the server via your API
-      api.post('/chat/messages', { message: messageInput })
+      api.post('/chat/messages', { message: authState.user.name+" : "+messageInput })
           .then(() => {
             // After sending the message, reload chat messages
             loadChatMessages();
-            setMessageInput('');
           })
           .catch((error) => {
             console.error('Failed to send chat message:', error);
           });
+        // Clear the input field
+        setMessageInput('');
     }
   };
 
@@ -42,16 +45,17 @@ const GroupChat = () => {
         <div>
           <ul>
             {messages.map((message, index) => (
-                <li key={index}>{message.text}</li>
+                <li key={index}> {message.text}</li>
             ))}
           </ul>
         </div>
         <form onSubmit={handleSubmit}>
           <input
+
               type="text"
-              placeholder="Type a message..."
+              placeholder="Type a message... "
               value={messageInput}
-              onChange={(e) => setMessageInput(e.target.value)}
+              onChange={(e) => setMessageInput(e.target.value )}
           />
           <button type="submit">Send</button>
         </form>

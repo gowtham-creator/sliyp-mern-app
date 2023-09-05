@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Tasks from '../components/Tasks';
 import MainLayout from '../layouts/MainLayout';
 import GroupChat from "../components/GroupChat";
+import Chat from "../components/Chat";
 
 const Home = () => {
 
