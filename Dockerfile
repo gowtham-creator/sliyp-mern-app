@@ -26,6 +26,9 @@ COPY frontend/package*.json ./
 # Install frontend dependencies
 RUN npm install
 
+# build frontend
+RUN npm run build
+
 # Set the working directory for the backend
 WORKDIR /app/backend
 
