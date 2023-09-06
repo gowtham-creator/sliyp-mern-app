@@ -4,12 +4,17 @@ FROM node:20
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
+# Copy frontend package.json and package-lock.json to the container
+COPY frontend/package*.json ./frontend/
 
+# Install frontend dependencies
+RUN cd frontend && npm install
 
-# Install application dependencies
-RUN npm install
+# Copy backend package.json and package-lock.json to the container
+COPY backend/package*.json ./backend/
+
+# Install backend dependencies
+RUN cd backend && npm install
 
 # Copy the rest of the application code to the container
 COPY . .
@@ -19,6 +24,5 @@ EXPOSE 5000
 EXPOSE 3000
 EXPOSE 3001
 
-
 # Start your application
-CMD ["npm", "start"]
+CMD ["npm", "run","dev"]
