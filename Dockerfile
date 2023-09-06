@@ -37,6 +37,8 @@ COPY . .
 
 RUN npm install
 
+RUN ls -l
+
 EXPOSE 3000
 
 CMD ["npm", "start"]
