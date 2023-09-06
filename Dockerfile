@@ -40,4 +40,4 @@ EXPOSE 3000
 EXPOSE 3000
 
 # Start your application
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
