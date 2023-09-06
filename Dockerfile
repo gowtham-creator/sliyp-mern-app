@@ -44,7 +44,6 @@ RUN npm run build
 
 CMD ["npm", "run", "dev"]
 
-RUN ls -l /app/build
 RUN ls -l /app
 RUN ls -l /app/backend
 RUN ls -l /app/frontend
