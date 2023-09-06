@@ -1,5 +1,10 @@
-# Use an official Node.js runtime as the base image
-FROM node:20
+
+# build environment
+FROM node:16-alpine as react-build
+WORKDIR /app/frontend
+
+# Choose NGINX as our base Docker image
+FROM nginx:alpine
 
 # Set the working directory in the container
 WORKDIR /app
@@ -44,12 +49,6 @@ WORKDIR /app/frontend
 CMD ["npm", "start"]
 
 
-# build environment
-FROM node:16-alpine as react-build
-WORKDIR /app/frontend
-
-# Choose NGINX as our base Docker image
-FROM nginx:alpine
 
 # Copy our nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/configfile.template
