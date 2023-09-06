@@ -29,7 +29,7 @@
 #CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
 
-FROM node:12-slim
+FROM node:20
 
 WORKDIR /app/frontend
 
