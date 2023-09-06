@@ -26,9 +26,6 @@ COPY frontend/package*.json ./
 # Install frontend dependencies
 RUN npm install
 
-# build frontend
-RUN npm run build
-
 # Set the working directory for the backend
 WORKDIR /app/backend
 
@@ -43,13 +40,15 @@ WORKDIR /app
 
 # Copy the rest of the application code to the container
 COPY . .
-
+RUN npm run build
 
 CMD ["npm", "run", "dev"]
 
 RUN ls -l /app/build
 RUN ls -l /app
 RUN ls -l /app/backend
+RUN ls -l /app/frontend
+
 
 
 
