@@ -31,9 +31,11 @@
 
 FROM node:20
 
-WORKDIR /app/frontend
+WORKDIR /app
 
 COPY . .
+
+RUN cd frontend/
 
 RUN npm install
 
