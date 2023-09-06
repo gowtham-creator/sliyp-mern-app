@@ -88,7 +88,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy the built React app to the NGINX HTML directory
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/frontend/build /usr/share/nginx/html
 
 # Expose port 80 (the default HTTP port)
 EXPOSE 80
