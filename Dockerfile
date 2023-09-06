@@ -28,16 +28,22 @@
 ## Substitute $PORT variable in config file with the one passed via "docker run"
 #CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
-
-FROM node:20
+FROM node:16-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY frontend/package.json frontend/package-lock.json ./
 
-RUN npm install
+RUN npm install --prefix frontend
 
-RUN ls -l
+COPY backend/package.json backend/package-lock.json ./
+
+RUN npm install --prefix backend
+
+COPY frontend ./frontend
+
+COPY backend ./backend
 
 EXPOSE 3000
-CMD ["npm", "run", "dev-client"]
+
+CMD ["npm", "run", "start"]
