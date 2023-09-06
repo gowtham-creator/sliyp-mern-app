@@ -32,7 +32,7 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-RUN ls -l
+RUN ls -l /app
 
 COPY package.json ./
 
