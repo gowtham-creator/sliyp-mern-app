@@ -40,4 +40,6 @@ EXPOSE 5000
 EXPOSE 3001
 
 # Start your application
-CMD ["npm", "run", "dev"]
+CMD ["cd", "frontend/"]
+
+CMD ["npm", "start"]
