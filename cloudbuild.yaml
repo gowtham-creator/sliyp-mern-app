@@ -13,6 +13,7 @@ steps:
       '--image',
       'gcr.io/$PROJECT_ID/mern-app',
       '--port=3000',  # Adjust the port as needed
+      '--region=asia-south1',  # Specify the region as asia-south1 (Mumbai)
     ]
 
 substitutions:
