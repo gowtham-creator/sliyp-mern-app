@@ -37,7 +37,7 @@ COPY . .
 # Expose the ports your application will run on
 EXPOSE 5000
 EXPOSE 3000
-EXPOSE 3001
+EXPOSE 3000
 
 # Start your application
 CMD ["npm", "start"]
