@@ -35,9 +35,9 @@ WORKDIR /app
 COPY . .
 
 # Expose the ports your application will run on
+EXPOSE 3000
 EXPOSE 5000
-EXPOSE 3000
-EXPOSE 3000
+EXPOSE 3001
 
 # Start your application
 CMD ["npm", "run", "dev"]
