@@ -39,6 +39,6 @@ EXPOSE 3000
 
 
 # Start your application
-CMD ["cd", "frontend/"]
+WORKDIR /app/frontend
 
-CMD ["npm", "run", "dev-client"]
+CMD ["npm", "start"]
