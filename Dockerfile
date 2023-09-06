@@ -6,6 +6,8 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
+COPY frontend/package*.json ./frontend/
+
 
 CMD ["cd" ,"frontend/"]
 
