@@ -42,4 +42,4 @@ EXPOSE 3001
 # Start your application
 CMD ["cd", "frontend/"]
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev-client"]
