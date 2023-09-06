@@ -35,12 +35,11 @@ WORKDIR /app
 
 COPY . .
 
-RUN cd frontend/
 
 RUN npm install
 
 RUN ls -l
 
 EXPOSE 3000
-
+CMD ["cd", "frontend/"]
 CMD ["npm", "start"]
