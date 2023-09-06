@@ -32,6 +32,8 @@ FROM node:16-alpine
 
 WORKDIR /app
 
+RUN ls -l
+
 COPY package.json ./
 
 COPY frontend/package.json frontend/package-lock.json ./
