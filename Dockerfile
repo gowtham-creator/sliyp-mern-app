@@ -26,7 +26,6 @@ COPY frontend/package*.json ./
 
 # Install frontend dependencies
 RUN npm install
-RUN npm run build
 
 # Set the working directory for the backend
 WORKDIR /app/backend
@@ -35,7 +34,6 @@ WORKDIR /app/backend
 COPY backend/package*.json ./
 
 # Install backend dependencies
-RUN npm install
 
 
 # Return to the root working directory
@@ -50,8 +48,6 @@ CMD ["npm", "run", "dev"]
 RUN ls -l /app
 RUN ls -l /app/backend
 RUN ls -l /app/frontend
-
-
 
 
 # Copy our nginx configuration
