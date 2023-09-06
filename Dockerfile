@@ -9,13 +9,17 @@ FROM nginx:alpine
 # Set the working directory in the container
 WORKDIR /app
 
+
 RUN apk add --update npm
+
+RUN npm run build
 
 # Copy root-level package.json and package-lock.json to the container
 COPY package*.json ./
 
 # Install root-level dependencies (if any)
 RUN npm install
+RUN npm run build
 
 # Set the working directory for the frontend
 WORKDIR /app/frontend
@@ -25,6 +29,7 @@ COPY frontend/package*.json ./
 
 # Install frontend dependencies
 RUN npm install
+RUN npm run build
 
 # Set the working directory for the backend
 WORKDIR /app/backend
@@ -34,6 +39,7 @@ COPY backend/package*.json ./
 
 # Install backend dependencies
 RUN npm install
+RUN npm run build
 
 # Return to the root working directory
 WORKDIR /app
