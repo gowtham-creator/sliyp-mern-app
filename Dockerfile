@@ -44,6 +44,10 @@ COPY . .
 
 CMD ["npm", "run", "dev"]
 
+RUN ls -l /app/build
+RUN ls -l /app
+RUN ls -l /app/backend
+
 
 
 # Copy our nginx configuration
