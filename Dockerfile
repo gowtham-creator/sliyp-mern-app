@@ -49,7 +49,7 @@ CMD ["npm", "run", "dev"]
 # Copy our nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/configfile.template
 
-COPY --from=react-build /app/build /usr/share/nginx/html
+COPY --from=react-build /app/frontend/build /usr/share/nginx/html
 
 
 # Define environment variables for Cloud Run
