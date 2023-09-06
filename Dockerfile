@@ -9,6 +9,8 @@ FROM nginx:alpine
 # Set the working directory in the container
 WORKDIR /app
 
+RUN apk add --update npm
+
 # Copy root-level package.json and package-lock.json to the container
 COPY package*.json ./
 
