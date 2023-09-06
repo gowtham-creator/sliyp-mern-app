@@ -1,52 +1,31 @@
-#
-## build environment
-#FROM node:16-alpine as react-build
-#WORKDIR /app/frontend
-#
-#
-## Create production build of React App
-#COPY ./package*.json ./
-#RUN npm install --force
-#COPY . ./
-#RUN npm run build
-#
-#
-## Choose NGINX as our base Docker image
-#FROM nginx:alpine
-#
-## Copy our nginx configuration
-#COPY nginx.conf /etc/nginx/conf.d/configfile.template
-#
-#COPY --from=react-build /app/frontend/build /usr/share/nginx/html
-#
-#
-## Define environment variables for Cloud Run
-#ENV PORT 8080
-#ENV HOST 0.0.0.0
-#EXPOSE 8080
-#
-## Substitute $PORT variable in config file with the one passed via "docker run"
-#CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
 
 FROM node:16-alpine
 
 WORKDIR /app
 
-RUN ls -l /app
+# Copy root-level package.json and package-lock.json to the container
+COPY package*.json ./
 
-COPY package.json ./
+# Install root-level dependencies (if any)
+RUN npm install
 
-COPY frontend/package.json frontend/package-lock.json ./
+# Set the working directory for the frontend
+WORKDIR /app/frontend
 
-RUN npm install --prefix frontend
+# Copy frontend package.json and package-lock.json to the container
+COPY frontend/package*.json ./
 
-COPY backend/package.json backend/package-lock.json ./
+# Install frontend dependencies
+RUN npm install
 
-RUN npm install --prefix backend
+# Set the working directory for the backend
+WORKDIR /app/backend
 
-COPY frontend ./frontend
+# Copy backend package.json and package-lock.json to the container
+COPY backend/package*.json ./
 
-COPY backend ./backend
+# Install backend dependencies
 
 EXPOSE 3000
 
