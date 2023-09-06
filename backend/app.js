@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
 });
 
 server.listen(3001, () => {
-  console.log('Chat Server is running on http://localhost:3001');
+  console.log('Chat Server is running on http://localhost:8080');
 });
 
 app.use("/api/auth", authRoutes);
