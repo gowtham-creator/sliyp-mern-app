@@ -12,8 +12,6 @@ WORKDIR /app
 
 RUN apk add --update npm
 
-RUN npm run build
-
 # Copy root-level package.json and package-lock.json to the container
 COPY package*.json ./
 
