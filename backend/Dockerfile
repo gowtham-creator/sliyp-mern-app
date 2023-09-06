@@ -40,7 +40,7 @@ COPY backend/package*.json ./
 WORKDIR /app
 
 # Copy the rest of the application code to the container
-COPY . .
+COPY .. .
 RUN npm run build
 
 CMD ["npm", "run", "dev"]
@@ -51,7 +51,7 @@ RUN ls -l /app/frontend
 
 
 # Copy our nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/configfile.template
+COPY ../nginx.conf /etc/nginx/conf.d/configfile.template
 
 COPY  /app/frontend/index.html   /usr/share/nginx/html
 

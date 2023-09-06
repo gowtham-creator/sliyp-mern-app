@@ -7,14 +7,14 @@ WORKDIR /app
 # Create production build of React App
 COPY ./package*.json ./
 RUN npm install --force
-COPY . ./
+COPY frontend ./
 RUN npm run build
 
 # Choose NGINX as our base Docker image
 FROM nginx:alpine
 
 # Copy our nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/configfile.template
+COPY frontend/nginx.conf /etc/nginx/conf.d/configfile.template
 
 COPY --from=react-build /app/build /usr/share/nginx/html
 
