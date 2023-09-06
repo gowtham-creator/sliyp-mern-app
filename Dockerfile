@@ -70,7 +70,7 @@
 FROM node:16-alpine as build
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /app/frontend
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
