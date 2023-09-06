@@ -1,4 +1,4 @@
-steps:
+=steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/mern-app', '.']
@@ -8,7 +8,7 @@ steps:
     args: ['push', 'gcr.io/$PROJECT_ID/mern-app']
 
 images:
-  - 'gcr.io/$PROJECT_ID/mern-app'
+  - 'gcr.io/$PROJECT_ID/mern-app'  # This is correct
 
   # Deploy the container to Google Cloud Run
   # Make sure you've set up Google Cloud Run accordingly
@@ -16,6 +16,6 @@ images:
     args: ['run', 'deploy', 'mern-app', '--image', 'gcr.io/$PROJECT_ID/mern-app', '--port', '3000', '--port', '3001', '--port', '5000']
 
 substitutions:
-  _APP_PORT: "3000"  # Update with the primary port of your frontend or backend
-  _CHAT_PORT: "3001" # Update with the chat service port
-  _BACKEND_PORT: "5000" # Update with the backend port
+  _APP_PORT: "3000"
+  _CHAT_PORT: "3001"
+  _BACKEND_PORT: "5000"
