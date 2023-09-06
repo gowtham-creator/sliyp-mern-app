@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3001, () => {
+server.listen(8080, () => {
   console.log('Chat Server is running on http://localhost:8080');
 });
 
