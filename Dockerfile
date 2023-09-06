@@ -27,7 +27,7 @@ COPY backend/package*.json ./
 
 # Install backend dependencies
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["npm", "run", "start"]
 
