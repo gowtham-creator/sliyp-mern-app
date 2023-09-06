@@ -12,8 +12,7 @@ steps:
       'mern-app',
       '--image',
       'gcr.io/$PROJECT_ID/mern-app',
-      '--port','3000',
-      '--region','asia-south1'
+      '--region', 'asia-south1', '--platform', 'managed'
     ]
 
 substitutions:
