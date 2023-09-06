@@ -11,13 +11,16 @@ CMD ["cd" ,"frontend/"]
 
 
 # Install application dependencies
-RUN npm install
+RUN npm run install-all
 
 # Copy the rest of the application code to the container
 COPY . .
 
 # Expose the ports your application will run on
 EXPOSE 5000
+EXPOSE 3000
+EXPOSE 3001
+
 
 # Start your application
 CMD ["npm", "start"]
