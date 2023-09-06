@@ -32,6 +32,8 @@ FROM node:16-alpine
 
 WORKDIR /app
 
+COPY package.json ./
+
 COPY frontend/package.json frontend/package-lock.json ./
 
 RUN npm install --prefix frontend
@@ -47,3 +49,4 @@ COPY backend ./backend
 EXPOSE 3000
 
 CMD ["npm", "run", "start"]
+
