@@ -39,7 +39,7 @@ COPY backend/package*.json ./
 
 # Install backend dependencies
 RUN npm install
-RUN npm run build
+
 
 # Return to the root working directory
 WORKDIR /app
